@@ -1,41 +1,110 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  ChakraProvider,
-  Box,
+  Heading,
+  Container,
   Text,
-  Link,
-  VStack,
-  Code,
+  HStack,
+  SimpleGrid,
   Grid,
-  theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import './index.css';
+import CoinPriceCard from './components/CoinPriceCard';
+import Loader from './components/Loader';
+import PricingSection from './components/PricingSection';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
+  const [pricesData, setPricesData] = useState(null);
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      const res = await fetch('https://s3.amazonaws.com/dolartoday/data.json');
+
+      const prices = await res.json();
+      setPricesData(prices);
+    };
+
+    fetchPrices();
+  }, []);
+
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <Container
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      width="100%"
+      height="100vh"
+      bg="#820000"
+    >
+      {pricesData === null ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <Text color="white" mb="0">
+            Última actualización de precios:
+          </Text>
+          <Text color="white" fontWeight="bold">
+            {pricesData._timestamp.fecha}
+          </Text>
+          <PricingSection title="USD" emoji="💵">
+            <CoinPriceCard
+              price={pricesData.USD.promedio}
+              coin="Bs"
+              label={'Promedio'}
+            />
+
+            <CoinPriceCard
+              price={pricesData.USD.dolartoday}
+              coin="Bs"
+              label={'Dolar Today'}
+            />
+
+            <CoinPriceCard
+              price={pricesData.USD.efectivo}
+              coin="Bs"
+              label={'Efectivo'}
+            />
+
+            <CoinPriceCard
+              price={pricesData.USD.sicad1}
+              coin="Bs"
+              label={'SICAD 1'}
+            />
+          </PricingSection>
+
+          <PricingSection title="EUR" emoji="💶">
+            <CoinPriceCard
+              price={pricesData.EUR.promedio}
+              coin="Bs"
+              label={'Promedio'}
+            />
+
+            <CoinPriceCard
+              price={pricesData.EUR.dolartoday}
+              coin="Bs"
+              label={'Dolar Today'}
+            />
+
+            <CoinPriceCard
+              price={pricesData.EUR.efectivo}
+              coin="Bs"
+              label={'Efectivo'}
+            />
+
+            <CoinPriceCard
+              price={pricesData.EUR.sicad1}
+              coin="Bs"
+              label={'SICAD 1'}
+            />
+          </PricingSection>
+
+          <Footer />
+        </>
+      )}
+    </Container>
   );
 }
 
