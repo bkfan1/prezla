@@ -3,6 +3,7 @@ import {
   Heading,
   Container,
   Text,
+  Box,
   HStack,
   SimpleGrid,
   Grid,
@@ -35,7 +36,7 @@ function App() {
       alignItems="center"
       justifyContent="center"
       width="100%"
-      height="100vh"
+      minHeight="100vh"
       bg="#820000"
     >
       {pricesData === null ? (
@@ -43,12 +44,15 @@ function App() {
       ) : (
         <>
           <Header />
-          <Text color="white" mb="0">
-            Última actualización de precios:
-          </Text>
-          <Text color="white" fontWeight="bold">
-            {pricesData._timestamp.fecha}
-          </Text>
+          <Box textAlign="center" padding="5" bg="#8E1919" borderRadius="5px">
+            <Text color="white" mb="0">
+              Última actualización de precios:
+            </Text>
+            <Text color="white" fontWeight="bold">
+              {pricesData._timestamp.fecha}
+            </Text>
+          </Box>
+
           <PricingSection title="USD" emoji="💵">
             <CoinPriceCard
               price={pricesData.USD.promedio}
