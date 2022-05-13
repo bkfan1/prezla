@@ -20,7 +20,7 @@ export default function PricingSection({ children, emoji, title }) {
       >
         <Heading color="white">{`${emoji} ${title}`}</Heading>
 
-        <HStack className="priceCardsGrid">{children}</HStack>
+        <Grid as="div" templateColumns='repeat(2, 1fr)' gap="15px" className="priceCardsGrid">{children}</Grid>
       </Container>
     </>
   );

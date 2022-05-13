@@ -3,7 +3,16 @@ import { Container, Heading, HStack, Text, Link } from '@chakra-ui/react';
 export default function Footer() {
   return (
     <>
-      <Container as="footer" color="white">
+      <Container
+        as="footer"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        width="100%"
+        pb="5"
+        color="white"
+        bg="#5B0000"
+      >
         <Text>
           Datos por cortesía de la{' '}
           <Link color="yellow" href="https://dolartoday.com/api/">
@@ -14,7 +23,7 @@ export default function Footer() {
             DolarToday
           </Link>
         </Text>
-        <Heading as="h4" mb="6">
+        <Heading as="h4" mt="1" mb="6">
           Creado por Jackson Paredes Ferranti
         </Heading>
 

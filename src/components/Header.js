@@ -9,13 +9,16 @@ export default function Header() {
         flexDirection="column"
         alignItems="center"
         width="100%"
+        paddingY="20px"
         textAlign="center"
         color="white"
+        bg="#5B0000"
+        marginBottom="10px"
       >
-        <Heading as="h1" mb="8">
+        <Heading as="h1" my="0">
           🇻🇪 Prezla
         </Heading>
-        <Heading as="h3" my="0">
+        <Heading as="h3" mt="6" mb="0">
           Precios de divisas en bolívares cada 10 minutos
         </Heading>
       </Container>
