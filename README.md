@@ -4,6 +4,10 @@ An application to check the prices of foreign currencies (USD and EUR) in the lo
 
 NOTE: Api updates data every 10 minutes, so to see the last update, you have to refresh the page (soon that will be changed).
 
+## Live Demo:
+
+https://prezla.vercel.app/
+
 ## Credits:
 
 Data provided by DolarToday API:
