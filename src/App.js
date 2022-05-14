@@ -34,18 +34,20 @@ function App() {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      justifyContent="center"
+      justifyContent="space-between"
       width="100%"
       minHeight="100vh"
       bg="#820000"
+      padding="0"
+      margin="0"
     >
       {pricesData === null ? (
         <Loader />
       ) : (
         <>
           <Header />
-          <Box textAlign="center" padding="5" bg="#8E1919" borderRadius="5px">
-            <Text color="white" mb="0">
+          <Box textAlign="center" padding="8" bg="#8E1919" borderRadius="5px">
+            <Text color="white" mb="0" >
               Última actualización de precios:
             </Text>
             <Text color="white" fontWeight="bold">
